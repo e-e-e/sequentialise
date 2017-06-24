@@ -8,9 +8,16 @@
     "test-travis": "nyc tape test.js | tap-spec",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
+  "keywords": [
+    "queue",
+    "promise",
+    "es6",
+    "asynchronous",
+    "sequential"
+  ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/e-e-e/sequentialise"
   },
   "devDependencies": {
     "bluebird": "^3.5.0",
