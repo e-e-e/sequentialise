@@ -8,6 +8,7 @@ function sequentialise(obj, opts) {
 
   const handler = {
     get(target, propKey, receiver) {
+      if (propKey === 'promiseQueue') return queue;
       const origMethod = target[propKey];
       if (typeof origMethod !== 'function' || (ignore.includes(propKey))) return origMethod;
       return (...args) => {

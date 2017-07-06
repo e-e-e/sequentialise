@@ -36,10 +36,14 @@ Example options:
   }
 ```
 
+`var queue = seqObject.promiseQueue`
+Returns the internal instance of [PromiseQueue](https://www.npmjs.com/package/a-promise-queue). Look at PromiseQueue for available options.
+
 ## Caveats
 
 1. Sequentialised methods **can not** reference one another. This will make deadlock condition where the method called within a method is waiting for that one to finish before it can proceed, this will never happens as it is waiting for the nested method to return.
 2. Sequentialised methods **should not** use new ES6 ...rest arguments. ...rest arguments are not counted in `function.length` which confuses the calculations used to determine the options argument added by sequentialise.
+3. `.promiseQueue` is a reserved method name.
 
 ## How to use
 

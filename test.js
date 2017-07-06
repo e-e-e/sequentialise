@@ -1,8 +1,20 @@
 const tape = require('tape');
 const bluebird = require('bluebird');
+const PromiseQueue = require('a-promise-queue');
 const sequentialise = require('./index.js');
 
 const fail = t => e => { t.fail(e) };
+
+tape('allows access to underlying PromiseQueue via .promiseQueue', (t) => {
+  const object = {
+    foo: x => bluebird.delay(100).then(() => x),
+    bar: () => 'bar',
+    notafunc: 'hmmm',
+  };
+  const linear = sequentialise(object);
+  t.ok(linear.promiseQueue instanceof PromiseQueue);
+  t.end();
+});
 
 tape('wraps an object transparently, returning object with get as if it was the object', (t) => {
   const object = {
